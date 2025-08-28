@@ -30,11 +30,10 @@ jobs:
           cat > index.md <<EOF
           # Biotech Daily Digest
 
-          - Latest: [${TODAY} Digest](/digest/${TODAY}.md)
+          - Latest: [${TODAY} Digest](digest/${TODAY}.md)
+          - [Archive](archive.md)
 
-          [Archive](/archive.md)
-
-          All digests live in \`/digest/\`. Bookmark this page to get the newest link every morning.
+          All digests live in \`digest/\`. Bookmark this page to get the newest link every morning.
           EOF
 
       - name: Build archive page
@@ -43,7 +42,7 @@ jobs:
           echo "" >> archive.md
           ls -1 digest/*.md 2>/dev/null | sort -r | while read f; do
             base="$(basename "$f")"
-            echo "- [${base%.md}](/digest/${base})" >> archive.md
+            echo "- [${base%.md}](digest/${base})" >> archive.md
           done || true
 
       - name: Commit digest
