@@ -24,11 +24,33 @@ jobs:
       - name: Generate digest
         run: python scripts/biotech_digest.py
 
+      - name: Update homepage to today
+        run: |
+          TODAY="$(date -u +'%Y-%m-%d')"
+          cat > index.md <<EOF
+          # Biotech Daily Digest
+
+          - Latest: [${TODAY} Digest](/digest/${TODAY}.md)
+
+          [Archive](/archive.md)
+
+          All digests live in \`/digest/\`. Bookmark this page to get the newest link every morning.
+          EOF
+
+      - name: Build archive page
+        run: |
+          echo "# Archive" > archive.md
+          echo "" >> archive.md
+          ls -1 digest/*.md 2>/dev/null | sort -r | while read f; do
+            base="$(basename "$f")"
+            echo "- [${base%.md}](/digest/${base})" >> archive.md
+          done || true
+
       - name: Commit digest
         run: |
           git config user.name "biotech-digest-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add digest/*.md README.md data/seen.json
+          git add digest/*.md README.md data/seen.json index.md archive.md _config.yml
           git commit -m "chore(digest): update $(date -u +'%Y-%m-%d')" || echo "No changes to commit"
 
       - name: Push
