@@ -1,0 +1,30 @@
+feeds:
+  - name: bioRxiv – all
+    url: https://www.biorxiv.org/rss/latest.xml
+  - name: medRxiv – all
+    url: https://www.medrxiv.org/rss/latest.xml
+  - name: arXiv q-bio
+    url: https://export.arxiv.org/rss/q-bio
+  - name: FDA Press Releases
+    url: https://www.fda.gov/about-fda/contact-fda/stay-informed/get-email-updates/press-announcements/rss.xml
+  - name: NCBI – PubMed New & Noteworthy
+    url: https://pubmed.ncbi.nlm.nih.gov/rss/faq/
+
+# Keep items if title/summary matches any of these (case-insensitive)
+keywords:
+  - opentrons
+  - hamilton
+  - tecan
+  - qPCR
+  - ELISA
+  - luminex
+  - organ-on-chip
+  - lab automation
+  - robotics
+  - LIMS
+  - assay
+  - multiplex
+  - multiomics
+  - protocol
+  - mRNA
+  - CRISPR
