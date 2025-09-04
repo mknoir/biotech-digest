@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -62,6 +64,7 @@ jobs:
       - name: Commit digest
         run: |
           git add digest/*.md README.md data/seen.json index.md archive.md _config.yml
+          git add -f .daily-stamp
           if ! git diff --cached --quiet; then
             git commit -m "chore(digest): update $(date -u +'%Y-%m-%d')"
           else
