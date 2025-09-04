@@ -55,6 +55,10 @@ jobs:
           echo "GIT_COMMITTER_NAME=Himay Makhija" >> $GITHUB_ENV
           echo "GIT_COMMITTER_EMAIL=68885248+mknoir@users.noreply.github.com" >> $GITHUB_ENV
 
+      - name: Daily stamp (forces a change each run)
+        run: |
+          echo "build: $(date -u +'%Y-%m-%dT%H:%M:%SZ')" > .daily-stamp
+
       - name: Commit digest
         run: |
           git add digest/*.md README.md data/seen.json index.md archive.md _config.yml
