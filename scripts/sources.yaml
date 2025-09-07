@@ -1,24 +1,85 @@
 feeds:
+  # Preprints / papers
   - name: bioRxiv – all
     url: https://www.biorxiv.org/rss/latest.xml
   - name: medRxiv – all
     url: https://www.medrxiv.org/rss/latest.xml
   - name: arXiv q-bio
     url: https://export.arxiv.org/rss/q-bio
-  - name: FDA Press Releases
-    url: https://www.fda.gov/about-fda/contact-fda/stay-informed/get-email-updates/press-announcements/rss.xml
-  - name: NCBI – PubMed New & Noteworthy
-    url: https://pubmed.ncbi.nlm.nih.gov/rss/faq/
 
-# Keep items if title/summary matches any of these (case-insensitive)
+  # High-signal biotech news
+  - name: Endpoints News
+    url: https://endpts.com/feed/
+  - name: Fierce Biotech
+    url: https://www.fiercebiotech.com/rss/xml
+  - name: STAT – Biotech
+    url: https://www.statnews.com/section/biotech/feed/
+  - name: BioCentury
+    url: https://www.biocentury.com/rss
+  - name: Evaluate Vantage
+    url: https://www.evaluate.com/vantage/feed
+
+  # Regulators / approvals / guidance
+  - name: FDA – Press Announcements
+    url: https://www.fda.gov/about-fda/contact-fda/stay-informed/get-email-updates/press-announcements/rss.xml
+  - name: FDA – Drug Safety/Approvals (CDER)
+    url: https://www.fda.gov/about-fda/contact-fda/stay-informed/get-email-updates/drug-safety-podcasts/rss.xml
+  - name: EMA – News
+    url: https://www.ema.europa.eu/en/news-events/news/rss
+  - name: MHRA – News
+    url: https://www.gov.uk/government/organisations/medicines-and-healthcare-products-regulatory-agency.atom
+  - name: NICE – Guidance
+    url: https://www.nice.org.uk/rss/guidance
+
+  # Antitrust (M&A context)
+  - name: FTC – Press Releases
+    url: https://www.ftc.gov/news-events/news/press-releases/rss
+  - name: DOJ Antitrust – Press Releases
+    url: https://www.justice.gov/atr/press-releases/feed
+
+  # Company press rooms (examples; add more you care about)
+  - name: Amgen Press Releases
+    url: https://investors.amgen.com/press-releases?pagetemplate=rss
+  - name: Merck (MRK) Press Releases
+    url: https://www.merck.com/newsroom/feed/
+  - name: Pfizer Press Releases
+    url: https://www.pfizer.com/news/press-release/press-release-feed
+  - name: Regeneron Press Releases
+    url: https://investor.regeneron.com/rss/news-releases.xml
+  - name: Vertex Press Releases
+    url: https://investors.vrtx.com/news-releases/news-release-details/rss.xml
+  - name: Moderna Press Releases
+    url: https://investors.modernatx.com/news-releases/news-release-details/rss.xml
+  - name: AstraZeneca Press Releases
+    url: https://www.astrazeneca.com/rss-feeds/press-releases.html
+  - name: Eli Lilly Press Releases
+    url: https://investor.lilly.com/rss/news-releases.xml
+  - name: 10x Genomics Press Releases
+    url: https://ir.10xgenomics.com/news-releases/news-release-details/rss.xml
+  - name: Illumina Press Releases
+    url: https://investor.illumina.com/news-releases/news-release-details/rss.xml
+
+  # Platform / vendor updates you track
+  - name: Opentrons Blog
+    url: https://blog.opentrons.com/rss/
+  - name: Hamilton Company News
+    url: https://www.hamiltoncompany.com/news/rss
+  - name: Tecan News
+    url: https://www.tecan.com/news/rss.xml
+  - name: Benchling Blog
+    url: https://www.benchling.com/blog/rss.xml
+  - name: Emerald Cloud Lab
+    url: https://www.emeraldcloudlab.com/feed.xml
+  - name: Strateos Press
+    url: https://strateos.com/feed.xml
+
 keywords:
+  # ————— Core tech / your domain —————
   - opentrons
   - hamilton
   - tecan
-  - qPCR
-  - ELISA
-  - luminex
-  - organ-on-chip
+  - ot flex
+  - liquid handler
   - lab automation
   - robotics
   - LIMS
@@ -26,5 +87,92 @@ keywords:
   - multiplex
   - multiomics
   - protocol
+  - qPCR
+  - ELISA
+  - luminex
+  - organ-on-chip
+  - microfluidic
+  - plate reader
+  - high-throughput
+  - HTS
+  - sample prep
+
+  # ————— Modalities / platforms —————
   - mRNA
+  - oligonucleotide
+  - antisense
   - CRISPR
+  - crispr-cas9
+  - base editing
+  - prime editing
+  - gene editing
+  - AAV
+  - lentiviral
+  - cell therapy
+  - CAR-T
+  - ADC
+  - radiopharmaceutical
+
+  # ————— Trials / approvals / labels —————
+  - IND
+  - NDA
+  - BLA
+  - sBLA
+  - 510(k)
+  - De Novo
+  - PMA
+  - Fast Track
+  - Breakthrough Therapy
+  - Priority Review
+  - CHMP
+  - marketing authorization
+  - PDUFA
+  - Phase 1
+  - Phase I
+  - Phase 2
+  - Phase II
+  - Phase 3
+  - Phase III
+  - pivotal
+  - registrational
+  - topline
+  - interim analysis
+  - readout
+
+  # ————— Company / deal keywords (M&A, licensing, $$) —————
+  - merger
+  - acquisition
+  - M&A
+  - licensing
+  - partnership
+  - collaboration
+  - SPA
+  - divestiture
+  - spinout
+  - IPO
+  - follow-on
+  - private placement
+  - term sheet
+  - milestone payment
+  - upfront payment
+
+  # ————— Company watchlist (names act as filters) —————
+  - Amgen
+  - Merck
+  - Pfizer
+  - Roche
+  - Novartis
+  - Regeneron
+  - Biogen
+  - Gilead
+  - Moderna
+  - Vertex
+  - Bristol-Myers
+  - AstraZeneca
+  - Eli Lilly
+  - Illumina
+  - 10x Genomics
+  - Benchling
+  - Opentrons
+  - Hamilton
+  - Tecan

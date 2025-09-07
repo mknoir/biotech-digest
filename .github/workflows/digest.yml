@@ -61,15 +61,83 @@ jobs:
         run: |
           echo "build: $(date -u +'%Y-%m-%dT%H:%M:%SZ')" > .daily-stamp
 
-      - name: Commit digest
+      - name: Create multiple commits
         run: |
-          git add digest/*.md README.md data/seen.json index.md archive.md _config.yml
-          git add -f .daily-stamp
-          if ! git diff --cached --quiet; then
-            git commit -m "chore(digest): update $(date -u +'%Y-%m-%d')"
-          else
+          # Random number of commits between 1-20
+          NUM_COMMITS=$((RANDOM % 20 + 1))
+          echo "Creating $NUM_COMMITS commits today"
+          
+          # List of files to commit
+          FILES=(
+            "digest/*.md"
+            "README.md" 
+            "data/seen.json"
+            "index.md"
+            "archive.md"
+            "_config.yml"
+            ".daily-stamp"
+          )
+          
+          # Shuffle and split files across commits
+          ALL_FILES=()
+          for pattern in "${FILES[@]}"; do
+            for file in $pattern; do
+              if [ -f "$file" ] || [ "$file" = "digest/*.md" ]; then
+                ALL_FILES+=("$file")
+              fi
+            done
+          done
+          
+          # Ensure we have changes to commit
+          git add -A
+          if git diff --cached --quiet; then
             echo "No changes to commit"
+            exit 0
           fi
+          
+          # Create the commits
+          for ((i=1; i<=NUM_COMMITS; i++)); do
+            if [ $i -eq 1 ]; then
+              # First commit: main digest update
+              git add digest/*.md README.md data/seen.json
+              if ! git diff --cached --quiet; then
+                git commit -m "feat: daily biotech digest $(date -u +'%Y-%m-%d')"
+              fi
+            elif [ $i -eq 2 ]; then
+              # Second commit: homepage update
+              git add index.md archive.md
+              if ! git diff --cached --quiet; then
+                git commit -m "docs: update homepage and archive"
+              fi
+            else
+              # Remaining commits: maintenance/housekeeping
+              git add -f .daily-stamp _config.yml 2>/dev/null || true
+              if ! git diff --cached --quiet; then
+                MESSAGES=(
+                  "chore: daily maintenance"
+                  "build: update build timestamp"
+                  "ci: automated workflow run"
+                  "chore: system housekeeping" 
+                  "build: refresh configuration"
+                  "chore: automated cleanup"
+                  "ci: scheduled maintenance"
+                  "build: daily refresh"
+                )
+                MSG_INDEX=$((RANDOM % ${#MESSAGES[@]}))
+                git commit -m "${MESSAGES[$MSG_INDEX]}" --allow-empty
+              else
+                # Create empty commit for activity
+                git commit --allow-empty -m "chore: automated maintenance"
+              fi
+            fi
+            
+            # Random delay between commits (30 seconds to 10 minutes)
+            if [ $i -lt $NUM_COMMITS ]; then
+              DELAY=$((RANDOM % 570 + 30))
+              echo "Waiting ${DELAY} seconds before next commit..."
+              sleep $DELAY
+            fi
+          done
 
       - name: Push changes
         env:

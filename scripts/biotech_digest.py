@@ -56,10 +56,24 @@ def matches_keywords(title, summary, kw_regexes):
 def render_digest(date_str, items):
     if not items:
         return f"# Biotech Daily Digest — {date_str}\n\n_No matching items today._\n"
+    
     lines = [f"# Biotech Daily Digest — {date_str}\n"]
+    
+    # Add summary section
     by_source = {}
     for it in items:
         by_source.setdefault(it["source"], []).append(it)
+    
+    lines.append(f"**{len(items)} items from {len(by_source)} sources**\n")
+    
+    # Add source breakdown
+    source_counts = [(source, len(arr)) for source, arr in sorted(by_source.items())]
+    lines.append("## Summary by Source\n")
+    for source, count in source_counts:
+        lines.append(f"- {source}: {count} item{'s' if count != 1 else ''}")
+    lines.append("")
+    
+    # Add detailed sections
     for source, arr in sorted(by_source.items()):
         lines.append(f"\n## {source}\n")
         for it in arr:
