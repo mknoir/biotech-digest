@@ -1,6 +1,6 @@
 # Biotech Daily Digest
 
-- Latest: [2026-01-02 Digest](digest/2026-01-02.md)
+- Latest: [2026-01-03 Digest](digest/2026-01-03.md)
 - [Archive](archive.md)
 
 All digests live in `digest/`. Bookmark this page to get the newest link every morning.
