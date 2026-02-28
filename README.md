@@ -1,5 +1,5 @@
 # Biotech Daily Digest
 
-- Latest: [2026-02-27 Digest](digest/2026-02-27.md)
+- Latest: [2026-02-28 Digest](digest/2026-02-28.md)
 
 This repo auto-collects biotech news/preprints that match our interests (lab automation, qPCR/ELISA, robotics, organ-on-chip, etc.).
